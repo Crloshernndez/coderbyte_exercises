@@ -15,10 +15,21 @@ Examples
   Output: true
 """
 
+import itertools
+
 def ArrayAdditionI(arr):
+  h = max(arr)
+  arr.remove(h)
+
+  convinations = []
+
+  for i in range(2, len(arr) + 1):
+    convinations.extend(itertools.combinations(arr, i))
+
+  for elem in convinations:
+    if sum(elem) == h:
+      return True
 
   # code goes here add sum
-  return arr
-
-# keep this function call here 
+  return False
 print(ArrayAdditionI(input()))

@@ -15,6 +15,7 @@ EXAMPLE:
   Input: "the color re(d))()(()"
   Output: 0
 """
+import unittest
 
 
 def BracketMatcher(strParam):
@@ -35,4 +36,41 @@ def BracketMatcher(strParam):
 
 
 # keep this function call here
-print(BracketMatcher("the color re(d))()(()"))
+# print(BracketMatcher("the color re(d))()(()"))
+
+# Tests
+class TestBracketMatcher(unittest.TestCase):
+
+    def test_case_1(self):
+        self.assertEqual(BracketMatcher("hello()"), 1)
+
+    def test_case_2(self):
+        self.assertEqual(BracketMatcher("one(bracket)"), 1)
+
+    def test_case_3(self):
+        self.assertEqual(BracketMatcher("coder(b)(y)(t)(e))"), 0)
+
+    def test_case_4(self):
+        self.assertEqual(BracketMatcher("()coderbyte() yes()"), 1)
+
+    def test_case_5(self):
+        self.assertEqual(BracketMatcher("dogs and cats"), 1)
+
+    def test_case_6(self):
+        self.assertEqual(BracketMatcher("01()01()01()"), 1)
+
+    def test_case_7(self):
+        self.assertEqual(BracketMatcher("the color re(d))()(()"), 0)
+
+    def test_case_8(self):
+        self.assertEqual(BracketMatcher("letter(s) gal(o)(r)((e)"), 0)
+
+    def test_case_9(self):
+        self.assertEqual(BracketMatcher("three let(t)ers"), 1)
+
+    def test_case_10(self):
+        self.assertEqual(BracketMatcher("twice thri(c)(e)()()"), 1)
+
+
+if __name__ == "__main__":
+    unittest.main()

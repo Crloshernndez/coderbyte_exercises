@@ -22,30 +22,12 @@ Examples
   
   Input: ["(1,2)", "(3,2)", "(2,12)", "(5,2)"]
   Output: false
-
-1. For input ["(1,2)", "(2,4)", "(7,2)"] the output was incorrect. The correct output is true
-
-2. For input ["(1,2)", "(2,4)", "(5,7)", "(7,2)", "(9,5)"] the output was incorrect. The correct output is true
-
-3. For input ["(1,2)", "(3,2)", "(2,12)", "(5,2)"] the output was incorrect. The correct output is false
-
-4. For input ["(2,5)", "(2,6)"] the output was incorrect. The correct output is false
-
-5. For input ["(10,20)"] the output was incorrect. The correct output is true
-
-6. For input ["(2,3)", "(1,2)", "(4,9)", "(9,3)", "(12,9)", "(6,4)"] the output was incorrect. The correct output is true
-
-7. For input ["(2,3)", "(1,2)", "(4,9)", "(9,3)", "(12,9)", "(6,4)", "(1,9)"] the output was incorrect. The correct output is false
-
-8. For input ["(1,2)", "(2,4)", "(7,4)"] the output was incorrect. The correct output is true
-
-9. For input ["(5,6)", "(6,3)", "(2,3)", "(12,5)"] the output was incorrect. The correct output is true
-
-10. For input ["(10,20)", "(20,50)"] the output was incorrect. The correct output is true
 """
 
+import unittest
 
-def TreeConstructor(strArr):
+
+def treeConstructor(strArr):
     parent_list = []
     child_list = []
 
@@ -54,15 +36,57 @@ def TreeConstructor(strArr):
         parent_list.append(parent)
 
         if parent_list.count(parent) > 2:
-            return False
+            return "False"
 
         if child not in child_list:
             child_list.append(child)
         else:
-            return False
+            return "False"
 
     return "True"
 
 
 # keep this function call here
-print(TreeConstructor(["(1,2)", "(3,2)", "(2,12)", "(5,2)"]))
+# print(TreeConstructor(["(1,2)", "(3,2)", "(2,12)", "(5,2)"]))
+
+# Tests
+class TestTreeConstructor(unittest.TestCase):
+
+    def test_case_1(self):
+        self.assertEqual(treeConstructor(["(1,2)", "(2,4)", "(7,2)"]), "True")
+
+    def test_case_2(self):
+        self.assertEqual(treeConstructor(
+            ["(1,2)", "(2,4)", "(5,7)", "(7,2)", "(9,5)"]), "True")
+
+    def test_case_3(self):
+        self.assertEqual(treeConstructor(
+            ["(1,2)", "(3,2)", "(2,12)", "(5,2)"]), "False")
+
+    def test_case_4(self):
+        self.assertEqual(treeConstructor(["(2,5)", "(2,6)"]), "False")
+
+    def test_case_5(self):
+        self.assertEqual(treeConstructor(["(10,20)"]), "True")
+
+    def test_case_6(self):
+        self.assertEqual(treeConstructor(
+            ["(2,3)", "(1,2)", "(4,9)", "(9,3)", "(12,9)", "(6,4)"]), "True")
+
+    def test_case_7(self):
+        self.assertEqual(treeConstructor(
+            ["(2,3)", "(1,2)", "(4,9)", "(9,3)", "(12,9)", "(6,4)", "(1,9)"]), "False")
+
+    def test_case_8(self):
+        self.assertEqual(treeConstructor(["(1,2)", "(2,4)", "(7,4)"]), "True")
+
+    def test_case_9(self):
+        self.assertEqual(treeConstructor(
+            ["(5,6)", "(6,3)", "(2,3)", "(12,5)"]), "True")
+
+    def test_case_10(self):
+        self.assertEqual(treeConstructor(["(10,20)", "(20,50)"]), "True")
+
+
+if __name__ == "__main__":
+    unittest.main()
